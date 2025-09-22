@@ -16,15 +16,7 @@
 <body>
 <h1>Decathlon Web MVP</h1>
 
-<div class="card">
-    <h2>Add competitor</h2>
-    <div class="row">
-        <label for="name">Name</label>
-        <input id="name" data-testid="competitorNameInput" placeholder="e.g., Anna" />
-        <button id="add" data-testid="addCompetitorBtn">Add competitor</button>
-    </div>
     <div id="error" data-testid="errorBanner" aria-live="polite"></div>
-</div>
 
 <div class="card">
     <h2>Enter result</h2>
@@ -63,6 +55,6 @@
     <button id="export" data-testid="exportCsvBtn">Export CSV</button>
 </div>
 
-<script src="app.js" type="module"></script>
+<script src="app.js" defer></script>
 </body>
 </html>
