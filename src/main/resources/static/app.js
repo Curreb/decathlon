@@ -14,9 +14,23 @@ async function renderStandings() {
       .map(r => `<tr>
         <td>${escapeHtml(r.name)}</td>
         <td>${r.scores?.["100m"] ?? ''}</td>
-        <td>${r.scores?.["Long Jump"] ?? r.scores?.["longJump"] ?? ''}</td>
-        <td>${r.scores?.["Shot Put"] ?? r.scores?.["shotPut"] ?? ''}</td>
+        <td>${r.scores?.["110mHurdles"] ?? ''}</td>
         <td>${r.scores?.["400m"] ?? ''}</td>
+        <td>${r.scores?.["1500m"] ?? ''}</td>
+        <td>${r.scores?.["discusThrow"] ?? ''}</td>
+        <td>${r.scores?.["highJump"] ?? ''}</td>
+        <td>${r.scores?.["javelinThrow"] ?? ''}</td>
+        <td>${r.scores?.["longJump"] ?? ''}</td>
+        <td>${r.scores?.["poleVault"] ?? ''}</td>
+        <td>${r.scores?.["shotPut"] ?? ''}</td>
+
+        <td>${r.scores?.["hep100mHurdles"] ?? ''}</td>
+        <td>${r.scores?.["200m"] ?? ''}</td>
+        <td>${r.scores?.["800m"] ?? ''}</td>
+        <td>${r.scores?.["hepHighJump"] ?? ''}</td>
+        <td>${r.scores?.["hepJavelinThrow"] ?? ''}</td>
+        <td>${r.scores?.["hepLongJump"] ?? ''}</td>
+        <td>${r.scores?.["hepShotPut"] ?? ''}</td>
         <td>${r.total ?? 0}</td>
       </tr>`).join('');
     const tbody = el('standings');
