@@ -38,12 +38,12 @@ public class MainGUI {
 
         // Dropdown for selecting discipline
         String[] disciplines = {
-                "100m", "400m", "1500m", "110m Hurdles",
-                "Long Jump", "High Jump", "Pole Vault",
-                "Discus Throw", "Javelin Throw", "Shot Put",
-                "Hep 200m", "Hep 800m", "Hep 100m Hurdles",
-                "Hep High Jump", "Hep Long Jump", "Hep Shot Put",
-                "Hep Javelin Throw"};
+                "100m (s)", "400m (s)", "1500m (s)", "110m Hurdles (s)",
+                "Long Jump (cm)", "High Jump (cm)", "Pole Vault (cm)",
+                "Discus Throw (m)", "Javelin Throw (m)", "Shot Put (m)",
+                "Hep 200m (s)", "Hep 800m (s)", "Hep 100m Hurdles (s)",
+                "Hep High Jump (cm)", "Hep Long Jump (cm)", "Hep Shot Put (m)",
+                "Hep Javelin Throw (m))"};
 
         disciplineBox = new JComboBox<>(disciplines);
         panel.add(new JLabel("Select Discipline:"));
