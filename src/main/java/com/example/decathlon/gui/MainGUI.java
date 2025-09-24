@@ -43,7 +43,7 @@ public class MainGUI {
                 "Discus Throw (m)", "Javelin Throw (m)", "Shot Put (m)",
                 "Hep 200m (s)", "Hep 800m (s)", "Hep 100m Hurdles (s)",
                 "Hep High Jump (cm)", "Hep Long Jump (cm)", "Hep Shot Put (m)",
-                "Hep Javelin Throw (m))"};
+                "Hep Javelin Throw (m)"};
 
         disciplineBox = new JComboBox<>(disciplines);
         panel.add(new JLabel("Select Discipline:"));
