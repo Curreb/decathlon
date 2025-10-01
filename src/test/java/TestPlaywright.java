@@ -39,6 +39,7 @@ public class TestPlaywright {
         //Locator table = page.locator("[data-testid='standingsTable']");
         Locator table = page.getByTestId("standingsTable");
 
+
         Assertions.assertEquals("Test Person1", table.locator("td").nth(0).textContent().trim());
         Assertions.assertEquals("1146", table.locator("td").nth(1).textContent().trim());
         Assertions.assertEquals("", table.locator("td").nth(2).textContent().trim());
