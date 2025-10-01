@@ -27,7 +27,6 @@ public class TestPlaywright {
         page.context().close();
     }
 
-
     //Test for 100 meter Decathlon, assertion for right values saved
     @Test
     void test100M10sec() throws InterruptedException {
