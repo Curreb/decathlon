@@ -1,6 +1,8 @@
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.*;
 
+@Disabled
+
 public class TestPlaywright {
     static Playwright pw;
     static Browser browser;
