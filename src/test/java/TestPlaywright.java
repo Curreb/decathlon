@@ -36,7 +36,8 @@ public class TestPlaywright {
         page.fill("[data-testid='rawInput']", "9.8");
         page.click("[data-testid='saveScoreBtn']");
 
-        Locator table = page.locator("[data-testid='standingsTable']");
+        //Locator table = page.locator("[data-testid='standingsTable']");
+        Locator table = page.getByTestId("standingsTable");
 
         Assertions.assertEquals("Test Person1", table.locator("td").nth(0).textContent().trim());
         Assertions.assertEquals("1146", table.locator("td").nth(1).textContent().trim());
