@@ -5,12 +5,17 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+import com.example.decathlon.common.Competitor;
 
 import java.awt.*;
+import java.io.IOException;
 
+import com.example.decathlon.core.CompetitionService;
 import com.example.decathlon.deca.*;
+import com.example.decathlon.excel.ExcelPrinter;
 import com.example.decathlon.heptathlon.*;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class MainGUI {
@@ -19,7 +24,7 @@ public class MainGUI {
     private JTextField resultField;
     private JComboBox<String> disciplineBox;
     private JTextArea outputArea;
-
+    private Competitor competitor;
     public static void main(String[] args) {
         new MainGUI().createAndShowGUI();
     }
@@ -59,6 +64,10 @@ public class MainGUI {
         calculateButton.addActionListener(new CalculateButtonListener());
         panel.add(calculateButton);
 
+        JButton exportButton = new JButton("Export to Excel");
+        exportButton.addActionListener(new ExportButtonListener());  // New export button listener
+        panel.add(exportButton);  // Add export button to the panel
+
         // Output area
         outputArea = new JTextArea(5, 40);
         outputArea.setEditable(false);
@@ -75,7 +84,10 @@ public class MainGUI {
             String name = nameField.getText();
             String discipline = (String) disciplineBox.getSelectedItem();
             String resultText = resultField.getText();
-
+            competitor = new Competitor(name);
+            if (competitor == null) {
+                competitor = new Competitor(name);  // Create a new competitor
+            }
             try {
                 double result = Double.parseDouble(resultText);
 
@@ -143,6 +155,7 @@ public class MainGUI {
                         score = new Hep800M().calculateResult(result);
                         break;
                 }
+                competitor.setScore(discipline, score);
 
                 outputArea.append("Competitor: " + name + "\n");
                 outputArea.append("Discipline: " + discipline + "\n");
@@ -152,6 +165,37 @@ public class MainGUI {
                 JOptionPane.showMessageDialog(null, "Please enter a valid number for the result.", "Invalid Input", JOptionPane.ERROR_MESSAGE);
             }
         }
+    }
+    private class ExportButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                exportToExcel();
+                showMessageDialog(null, "Results exported successfully!", "Export Successful", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                showMessageDialog(null, "Failed to export results to Excel.", "Export Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void exportToExcel() throws IOException {
+        String[][] data = new String[1][];
+        int i = 0;
+
+        Object[] rowData = competitor.getRowData(); // Get the competitor's row data
+
+        // Ensure the array size matches the number of columns in rowData
+        data[i] = new String[rowData.length];
+
+        // Safely copy rowData to data array
+        for (int j = 0; j < rowData.length; j++) {
+            data[i][j] = (rowData[j] != null) ? rowData[j].toString() : "";  // Handle null values
+        }
+
+
+        ExcelPrinter printer = new ExcelPrinter("TrackAndFieldResults");
+        printer.add(data, "Results");
+        printer.write();
     }
 }
 
